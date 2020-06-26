@@ -126,9 +126,75 @@ void main() {
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
+  sort_array(test,SIZE);
+  print_array(test, SIZE);
+  print_statistics(test, SIZE);
+
   /* Other Variable Declarations Go Here */
   /* Statistics and Printing Functions Go Here */
 
 }
 
-/* Add other Implementation File Code Here */
+
+int find_mean(unsigned char* ptr, int size){
+  int sum=0;
+  int mean;
+  for(int i=0; i<size; i++){
+    sum=sum+*ptr;
+    ptr++;
+  }
+  return sum/40;
+}
+
+
+int find_median(unsigned char* ptr, int size){
+  int median;
+  ptr=ptr+size/2;
+  if(size%2==0){
+    median=(*ptr + *(ptr-1))/2;
+  }
+  else{
+    median=*ptr;
+  }
+  return median;
+}
+
+int find_maximum(unsigned char* ptr, int size){
+  int max=*ptr;
+  for(int i=1; i<size; i++){
+    if(*ptr>max)
+    {
+      max=*ptr;
+    }
+    ptr++;
+  }
+  return max;
+}
+
+int find_minimum(unsigned char* ptr, int size){
+  int min=*ptr;
+  for(int i=1; i<size; i++){
+    if(*ptr<min)
+    {
+      min=*ptr;
+    }
+    ptr++;
+  }
+  return min;
+}
+
+void sort_array(unsigned char* ptr,int size){
+  int i, j;  
+  unsigned char temp;
+  for (i = 0; i < size-1; i++){
+    for(j=0; j<size-i-1; j++){
+      if(*(ptr+j)<*(ptr+j+1)){
+        temp=*(ptr+j);
+        *(ptr+j)=*(ptr+j+1);
+        *(ptr+j+1)=temp;
+      }
+    }
+  }      
+}
+
+//void print_array()
