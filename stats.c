@@ -126,13 +126,12 @@ void main() {
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
+  printf("The Given Array is: ");
+  print_array(test, SIZE);
+  printf("\nThe Sorted Array is: ");
   sort_array(test,SIZE);
   print_array(test, SIZE);
   print_statistics(test, SIZE);
-
-  /* Other Variable Declarations Go Here */
-  /* Statistics and Printing Functions Go Here */
-
 }
 
 
@@ -148,6 +147,7 @@ int find_mean(unsigned char* ptr, int size){
 
 
 int find_median(unsigned char* ptr, int size){
+  sort_array(ptr,size);
   int median;
   ptr=ptr+size/2;
   if(size%2==0){
@@ -194,7 +194,22 @@ void sort_array(unsigned char* ptr,int size){
         *(ptr+j+1)=temp;
       }
     }
-  }      
+  }  
 }
 
-//void print_array()
+void print_array(unsigned char* ptr,int size){
+  for(int i=0; i<size; i++){
+    printf("%d ",*ptr);
+    ptr++;
+  }
+  printf("\n");
+}
+
+void print_statistics(unsigned char* ptr, int size){
+  int mean,median,max,min;
+  mean=find_mean(ptr,size);
+  median=find_median(ptr,size);
+  max=find_maximum(ptr,size);
+  min=find_minimum(ptr,size);
+  printf("\nCalculated Statistics are: \nMean data: %d \nMedian: %d \nMaximum: %d \nMinimum: %d",mean,median,max,min);
+}
